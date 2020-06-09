@@ -2,25 +2,32 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      inputForm_value:''
+    }
+  };
+  handleChange = e => {
+    e.preventDefault();
+    const inputForm_value = this.state.inputForm_value;
+    this.setState({
+      inputForm_value:e.target.value,
+    });
+    alert(this.state.inputForm_value);
+  }
+  render(){
+    return (
+      <div className="ParentDiv">
+        <div className="childDiv">
+          <form onSubmit="">
+            <input className="inputStyles" onChange={this.handleChange}/>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
