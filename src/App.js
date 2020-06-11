@@ -6,23 +6,42 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      inputForm_value:''
+      name:'',
+      email:'',
+      name_error:'',
+      email_error:'',
     }
   };
   handleChange = e => {
     e.preventDefault();
-    const inputForm_value = this.state.inputForm_value;
-    this.setState({
-      inputForm_value:e.target.value,
+    const name = this.state.name;
+    this.setState({name:e.target.value,},()=>{
+      this.validateName();
     });
-    alert(this.state.inputForm_value);
+  }
+  validateName = () => {
+    const { name } = this.state;
+    this.setState({
+      name_error:
+        name.length > 3 ? null : 'short string! must be more than 3 character'
+    });
+  }
+  handleChangeEmail = e => {
+    e.preventDefault();
+    const email = this.state.email;
+    this.setState({
+      email:e.target.value,
+    });
   }
   render(){
     return (
       <div className="ParentDiv">
+        <div className="backgroundPhoto">
+        </div>
         <div className="childDiv">
           <form onSubmit="">
             <input className="inputStyles" onChange={this.handleChange}/>
+            <span>{this.state.name_error}</span>
           </form>
         </div>
       </div>
